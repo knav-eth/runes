@@ -18,7 +18,7 @@ export const ConnectWalletButton: React.FC = () => {
             >
               {address && address.slice(0, 8)}
             </MenuButton>
-            <MenuList>
+            <MenuList background="#000">
               <MenuItem onClick={disconnect}>Disconnect</MenuItem>
             </MenuList>
           </>
