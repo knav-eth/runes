@@ -8,12 +8,13 @@ const config: ThemeConfig = {
 const theme = extendTheme({
   config,
   fonts: {
+    heading: "Source Serif Pro",
     body: "Roboto"
   },
   styles: {
     global: {
       body: {
-        bg: "#0A0A16",
+        bg: "#000000",
         color: "white",
       },
     },
