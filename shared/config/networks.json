@@ -1,0 +1,10 @@
+{
+  "rinkeby": {
+    "nContractAddress": "",
+    "mainContractAddress": ""
+  },
+  "mainnet": {
+    "nContractAddress": "0x05a46f1e545526fb803ff974c790acea34d1f2d6",
+    "mainContractAddress": ""
+  }
+}
