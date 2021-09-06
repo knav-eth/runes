@@ -15,6 +15,7 @@ export type SubgraphN = {
   seventh: number
   eighth: number
   numbers: Array<number>
+  metadataURI: string
 }
 
 const N_FRAGMENT = `
@@ -30,6 +31,7 @@ const N_FRAGMENT = `
   seventh
   eighth
   numbers
+  metadataURI
 `
 
 type GetNResponse = {

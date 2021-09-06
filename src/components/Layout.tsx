@@ -1,15 +1,18 @@
 import { Box, Flex, FlexProps, Text } from "@chakra-ui/react"
 import Link from "next/link"
 import React from "react"
+import { useWallet } from "../hooks/useWallet"
 import { ConnectWalletButton } from "./ConnectWalletButton"
 
 export type LayoutProps = {
+  requireWallet?: boolean
   containerProps?: Partial<FlexProps>
 }
 
 const containerPadding = 8
 
-const Layout: React.FC<LayoutProps> = ({ children, containerProps }) => {
+const Layout: React.FC<LayoutProps> = ({ children, containerProps, requireWallet = false }) => {
+  const { isConnected } = useWallet()
   return (
     <Box minH={"100vh"}>
       <Flex flexDir="column" minH="100vh">
@@ -23,8 +26,21 @@ const Layout: React.FC<LayoutProps> = ({ children, containerProps }) => {
             <ConnectWalletButton/>
           </Flex>
         </Flex>
-        <Flex flex={1} p={containerPadding} {...containerProps}>
-          {children}
+        <Flex
+          flexDirection="column"
+          alignItems="center"
+          flex={1}
+          p={containerPadding}
+          {...containerProps}
+        >
+          {requireWallet && !isConnected ? (
+            <Box textAlign="center" my={8} width="full">
+              <Text marginTop={16} marginBottom={8}>
+                Connect your wallet to continue
+              </Text>
+              <ConnectWalletButton/>
+            </Box>
+          ) : children}
         </Flex>
       </Flex>
     </Box>

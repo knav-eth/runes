@@ -41,6 +41,7 @@ interface RuneInterface extends ethers.utils.Interface {
     "symbol()": FunctionFragment;
     "tokenByIndex(uint256)": FunctionFragment;
     "tokenOfOwnerByIndex(address,uint256)": FunctionFragment;
+    "tokenSVG(uint256)": FunctionFragment;
     "tokenURI(uint256)": FunctionFragment;
     "totalSupply()": FunctionFragment;
     "transferFrom(address,address,uint256)": FunctionFragment;
@@ -104,6 +105,10 @@ interface RuneInterface extends ethers.utils.Interface {
   encodeFunctionData(
     functionFragment: "tokenOfOwnerByIndex",
     values: [string, BigNumberish]
+  ): string;
+  encodeFunctionData(
+    functionFragment: "tokenSVG",
+    values: [BigNumberish]
   ): string;
   encodeFunctionData(
     functionFragment: "tokenURI",
@@ -171,6 +176,7 @@ interface RuneInterface extends ethers.utils.Interface {
     functionFragment: "tokenOfOwnerByIndex",
     data: BytesLike
   ): Result;
+  decodeFunctionResult(functionFragment: "tokenSVG", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "tokenURI", data: BytesLike): Result;
   decodeFunctionResult(
     functionFragment: "totalSupply",
@@ -329,6 +335,11 @@ export class Rune extends BaseContract {
       overrides?: CallOverrides
     ): Promise<[BigNumber]>;
 
+    tokenSVG(
+      tokenId: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<[string]>;
+
     tokenURI(
       tokenId: BigNumberish,
       overrides?: CallOverrides
@@ -433,6 +444,8 @@ export class Rune extends BaseContract {
     overrides?: CallOverrides
   ): Promise<BigNumber>;
 
+  tokenSVG(tokenId: BigNumberish, overrides?: CallOverrides): Promise<string>;
+
   tokenURI(tokenId: BigNumberish, overrides?: CallOverrides): Promise<string>;
 
   totalSupply(overrides?: CallOverrides): Promise<BigNumber>;
@@ -525,6 +538,8 @@ export class Rune extends BaseContract {
       index: BigNumberish,
       overrides?: CallOverrides
     ): Promise<BigNumber>;
+
+    tokenSVG(tokenId: BigNumberish, overrides?: CallOverrides): Promise<string>;
 
     tokenURI(tokenId: BigNumberish, overrides?: CallOverrides): Promise<string>;
 
@@ -668,6 +683,11 @@ export class Rune extends BaseContract {
       overrides?: CallOverrides
     ): Promise<BigNumber>;
 
+    tokenSVG(
+      tokenId: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<BigNumber>;
+
     tokenURI(
       tokenId: BigNumberish,
       overrides?: CallOverrides
@@ -776,6 +796,11 @@ export class Rune extends BaseContract {
     tokenOfOwnerByIndex(
       owner: string,
       index: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<PopulatedTransaction>;
+
+    tokenSVG(
+      tokenId: BigNumberish,
       overrides?: CallOverrides
     ): Promise<PopulatedTransaction>;
 
