@@ -12,7 +12,7 @@ const containerPadding = 8
 const Layout: React.FC<LayoutProps> = ({ children, containerProps }) => {
   return (
     <Box minH={"100vh"}>
-      <Flex flexDir="column" height="100vh">
+      <Flex flexDir="column" minH="100vh">
         <Flex p={containerPadding} zIndex={1} alignItems="center">
           <Link href="/" passHref>
             <Text cursor="pointer" _hover={{ color: "whiteAlpha.700" }}>

@@ -24,7 +24,7 @@ const NGrid: React.FC = () => {
           )}
           <MotionGrid
             flex={1}
-            templateColumns={["repeat(2, 1fr)", "repeat(3, 1fr)", "repeat(4, 1fr)"]}
+            templateColumns={["repeat(2, 1fr)", "repeat(3, 1fr)"]}
             gap={4}
             maxW="930px"
             marginX="auto"
