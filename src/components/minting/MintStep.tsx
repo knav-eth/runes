@@ -11,16 +11,19 @@ import NCard from "../NCard/NCard"
 export type MintStepProps = {
   selectedN: SubgraphN
   onCancel: () => void
+  onSuccess: () => void
 }
 
-export const MintStep: React.FC<MintStepProps> = ({ selectedN, onCancel }) => {
+export const MintStep: React.FC<MintStepProps> = ({ selectedN, onCancel, onSuccess }) => {
   const { wallet } = useWallet()
   const provider = wallet?.web3Provider
   const { mainContract } = useMainContract()
   const [isMinting, setIsMinting] = useState(false)
-  const [successful, setSuccessful] = useState(false)
   const [mintingTxn, setMintingTxn] = useState<string | null>(null)
   const [errorMessage, setErrorMessage] = useState<string | null>(null)
+  const [svgContent, setSvgContent] = useState<string | null>(null)
+
+  const numericId = parseInt(selectedN.id)
 
   const handleMint = useCallback(async () => {
     if (!provider) return
@@ -29,7 +32,7 @@ export const MintStep: React.FC<MintStepProps> = ({ selectedN, onCancel }) => {
       setErrorMessage(null)
       const signer = provider.getSigner()
       const contractWithSigner = mainContract.connect(signer)
-      const numericId = parseInt(selectedN.id)
+
       const result = await contractWithSigner.mintWithN(numericId)
 
       setMintingTxn(result.hash)
@@ -37,6 +40,7 @@ export const MintStep: React.FC<MintStepProps> = ({ selectedN, onCancel }) => {
 
       const mintedBigNo: BigNumber = receipt.events?.[0]?.args?.[2]
       const mintedId = parseInt(mintedBigNo._hex, 16)
+      onSuccess()
       console.log(`Minted Token ID: ${mintedId}`)
     } catch (e) {
       // @ts-ignore
@@ -47,7 +51,7 @@ export const MintStep: React.FC<MintStepProps> = ({ selectedN, onCancel }) => {
     } finally {
       setIsMinting(false)
     }
-  }, [setErrorMessage, provider])
+  }, [provider, mainContract, numericId])
 
   const transactionUrl: string | undefined = useMemo(() => {
     if (!mintingTxn || !isMinting) {
@@ -84,9 +88,8 @@ export const MintStep: React.FC<MintStepProps> = ({ selectedN, onCancel }) => {
             href={transactionUrl}
             target="_blank"
             rel="noopener noreferrer"
-            mb={3}
           >
-            <Alert status="info" flexDirection={["column", "row"]}>
+            <Alert status="info" flexDirection={["column", "row"]} mb={3}>
               <AlertIcon/>
               <Text fontWeight="semibold" marginRight={2}>Minting in progress</Text>
               <Text>
@@ -104,14 +107,6 @@ export const MintStep: React.FC<MintStepProps> = ({ selectedN, onCancel }) => {
           width="full"
           position="relative"
         >
-          <Box
-            position="absolute"
-            top={0}
-            bottom={0}
-            left={0}
-            right={0}
-            zIndex={9999}
-          ></Box>
           <NCard n={selectedN} />
         </Box>
       </Box>

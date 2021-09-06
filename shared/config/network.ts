@@ -65,7 +65,7 @@ export const NETWORK_CONFIG: Record<EthNetwork, EthNetworkConfig> = {
     rpcUrl: `https://rinkeby.infura.io/v3/${INFURA_ID}`,
     blockExplorer: "https://rinkeby.etherscan.io/",
     contractConfig: contractConfig.rinkeby,
-    nGraphUrl: "https://api.thegraph.com/subgraphs/name/knav-eth/the-n-project", // TODO: public N contract and subgraph on rinkeby for testing
+    nGraphUrl: "https://api.thegraph.com/subgraphs/name/knav-eth/the-n-project-rinkeby",
     baseFrontendUrl: "https://runes.vercel.app",
     openSeaBaseUrl: "https://testnets.opensea.io",
   },

@@ -1,5 +1,6 @@
 import { AspectRatio, Flex } from "@chakra-ui/react"
 import React, { useMemo } from "react"
+import { parseAndExtractImageFromURI } from "../../utils/metadata"
 import { NCardProps } from "./props"
 
 type DecodedNMetadata = {
@@ -10,8 +11,7 @@ type DecodedNMetadata = {
 
 const NCard: React.FC<NCardProps> = ({ n, containerProps }) => {
   const svgData: string = useMemo(() => {
-    const decoded: DecodedNMetadata = JSON.parse(atob(n.metadataURI.substr(29)))
-    return decoded.image
+    return parseAndExtractImageFromURI(n.metadataURI)
   }, [n])
 
   return (
