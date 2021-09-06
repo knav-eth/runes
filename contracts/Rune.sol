@@ -15,7 +15,7 @@ import "./core/NPass.sol";
 contract Rune is NPass {
     using Strings for uint256;
 
-    constructor() NPass("Rune", "RUNE", true) {}
+    constructor(address _nContractAddress) NPass(_nContractAddress, "Rune", "RUNE", true) {}
 
     function tokenURI(uint256 tokenId) public view virtual override returns (string memory) {
         require(_exists(tokenId), "ERC721Metadata: URI query for nonexistent token");

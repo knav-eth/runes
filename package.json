@@ -12,6 +12,7 @@
     "chain": "hardhat node",
     "copyArtifacts": "hardhat copyArtifacts",
     "deploy": "hardhat deploy",
+    "deploy:n-rinkeby": "hardhat deploy --network rinkeby",
     "contract:test": "hardhat test --network hardhat",
     "contract:compile": "hardhat compile"
   },

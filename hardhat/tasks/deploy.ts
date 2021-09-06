@@ -1,14 +1,19 @@
 import "@nomiclabs/hardhat-ethers"
 import { task } from "hardhat/config"
 import { Rune__factory } from "../../shared/contract_types"
-import { persistMainContractAddress } from "../utils/contract"
+import { getNContractAddress, persistMainContractAddress } from "../utils/contract"
 
 task("deploy", "Deploy main contract", async (taskArgs, hre) => {
   await hre.run("compile")
 
   const contractFactory = (await hre.ethers.getContractFactory("Rune")) as Rune__factory
 
-  const contract = await contractFactory.deploy()
+  const nContractAddress = getNContractAddress(hre)
+  if (!nContractAddress) {
+    throw new Error("N Contract Address not found")
+  }
+
+  const contract = await contractFactory.deploy(nContractAddress)
   const deployed = await contract.deployed()
 
   persistMainContractAddress(hre, deployed.address)

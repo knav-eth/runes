@@ -94,3 +94,13 @@ export function persistMainContractAddress(hre: HardhatRuntimeEnvironment, mainC
 
   persistConfig(hre, newConfig)
 }
+
+export function persistNContractAddress(hre: HardhatRuntimeEnvironment, nContractAddress: string) {
+  const existingConfig = getEnvironmentConfiguration(hre)
+  const newConfig: EnvironmentConfiguration = {
+    ...existingConfig,
+    nContractAddress,
+  }
+
+  persistConfig(hre, newConfig)
+}

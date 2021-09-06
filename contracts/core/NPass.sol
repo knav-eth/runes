@@ -19,8 +19,9 @@ abstract contract NPass is NPassCore {
      * @param onlyNHolders True if only n tokens holders can mint this token
      */
     constructor(
+        address _nContractAddress,
         string memory name,
         string memory symbol,
         bool onlyNHolders
-    ) NPassCore(name, symbol, IN(0x05a46f1E545526FB803FF974C790aCeA34D1f2D6), onlyNHolders) {}
+    ) NPassCore(name, symbol, IN(_nContractAddress), onlyNHolders) {}
 }
