@@ -14,7 +14,7 @@ export function useWalletNs(cacheKey?: any): UseWalletNsValue {
 
   const fetchWalletNs = useCallback(async (address: string): Promise<void> => {
     setLoading(true)
-    setWalletNs(await getNsByOwner("0x6327343b3a12fbd25488da0e82bd4512ad080423"))
+    setWalletNs(await getNsByOwner(address))
     setLoading(false)
   }, [])
 
