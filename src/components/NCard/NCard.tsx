@@ -15,6 +15,7 @@ const NCard: React.FC<NCardProps> = ({ id, containerProps }) => {
 
   const fetchSvgDataFromContract = useCallback(async (tokenId: number) => {
     try {
+      console.log("Attempting to fetch metadata for token:", tokenId)
       const metadataUri = await nContract.tokenURI(tokenId)
       const decoded: DecodedNMetadata = JSON.parse(atob(metadataUri.substr(29)))
       setSvgData(decoded.image)

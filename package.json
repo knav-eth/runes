@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "prebuild": "node fixLocalSettings.js",
-    "postinstall": "node fixLocalSettings.js",
+    "postinstallok": "node fixLocalSettings.js",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",

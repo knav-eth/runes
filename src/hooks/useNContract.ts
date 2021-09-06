@@ -20,7 +20,12 @@ export function useNContract(): UseNContractValue {
   const injectedProvider = wallet?.web3Provider
   const nContract = useMemo(
     // Only attempt to instantiate the N contract when in browser, not during SSR
-    () => process.browser ? N__factory.connect(getNContractAddress(), injectedProvider ?? provider) : null,
+    () => {
+      if (!process.browser) { return null }
+      const contractAddress = getNContractAddress()
+      console.log(`Connecting to N contract at address: ${contractAddress}`)
+      return N__factory.connect(contractAddress, injectedProvider ?? provider)
+    },
     [provider, injectedProvider],
   )
 
