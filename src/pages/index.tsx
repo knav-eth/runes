@@ -1,4 +1,6 @@
 import { Box, Button, Flex, Heading, Text } from "@chakra-ui/react"
+
+import "@fontsource/source-serif-pro/400.css"
 import { useRouter } from "next/router"
 import React, { useCallback } from "react"
 import { ConnectWalletButton } from "../components/ConnectWalletButton"
@@ -6,8 +8,6 @@ import { HardCodedRune } from "../components/HardCodedRune"
 import Layout from "../components/Layout"
 import { useWallet } from "../hooks/useWallet"
 import { ROUTES } from "../utils/routing"
-
-import "@fontsource/source-serif-pro/400.css"
 
 
 export default function Home() {
@@ -19,7 +19,7 @@ export default function Home() {
   }, [router])
 
   return (
-    <Layout>
+    <Layout hideLogo>
       <Box textAlign="center" width="full">
         <Box position="relative" zIndex={1}>
         <Heading
@@ -41,13 +41,13 @@ export default function Home() {
           <HardCodedRune/>
         </Flex>
 
-        
+
 
         <Text fontSize={["1rem", "1.2rem"]} color="whiteAlpha.700" mt={3}>
           Select one of your Ns to get started
         </Text>
 
-        
+
 
         <Box textAlign="center" my={8}>
           {isConnected ? (

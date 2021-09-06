@@ -7,19 +7,20 @@ import { ConnectWalletButton } from "./ConnectWalletButton"
 export type LayoutProps = {
   requireWallet?: boolean
   containerProps?: Partial<FlexProps>
+  hideLogo?: boolean
 }
 
 const containerPadding = 8
 
-const Layout: React.FC<LayoutProps> = ({ children, containerProps, requireWallet = false }) => {
+const Layout: React.FC<LayoutProps> = ({ children, containerProps, requireWallet = false, hideLogo = false }) => {
   const { isConnected } = useWallet()
   return (
     <Box minH={"100vh"}>
       <Flex flexDir="column" minH="100vh">
         <Flex p={containerPadding} zIndex={1} alignItems="center">
           <Link href="/" passHref>
-            <Text cursor="pointer" _hover={{ color: "whiteAlpha.700" }}>
-              Runes
+            <Text fontFamily="heading" fontSize="24px" cursor="pointer" color="#9999" _hover={{ color: "whiteAlpha.800" }} hidden={hideLogo}>
+              ru<span style={{ color: "#fff"}}>n</span>es
             </Text>
           </Link>
           <Flex justifyContent="flex-end" flex={1}>
