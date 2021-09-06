@@ -1,16 +1,13 @@
 import { EthNetwork, EthNetworkConfig, NETWORK_CONFIG } from "../../shared/config/network"
 
-export function getCurrentNetwork(): EthNetwork {
-  const url = process.env.NEXT_PUBLIC_VERCEL_URL ?? process.env.VERCEL_URL ?? globalThis?.location?.host ?? ""
 
-  const network = Object.values(EthNetwork).find((network) => {
-    const config = NETWORK_CONFIG[network]
-    return Boolean(url.match(config.envChecker)?.length)
-  })
-  if (!network) {
-    throw new Error(`Unknown network: ${url}`)
+export function getCurrentNetwork(): EthNetwork {
+  const envVarNetName = process.env.NEXT_PUBLIC_ETH_NETWORK ?? "mainnet"
+  const ethNetwork: EthNetwork = EthNetwork[envVarNetName.toLowerCase() as EthNetwork]
+  if (!ethNetwork) {
+    throw new Error(`Unrecognized network found: ${envVarNetName}`)
   }
-  return network
+  return ethNetwork
 }
 
 export function getNetworkConfig(): EthNetworkConfig {
