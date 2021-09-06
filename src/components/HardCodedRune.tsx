@@ -22,7 +22,7 @@ export const HardCodedRune: React.FC = () => {
         <rect width="500" height="500" fill="#000000"/>
       </g>
       <g id="circle">
-        <circle cx="250.1" cy="252" r="184.1" fill="none" stroke="#fff" strokeMiterlimit="10"/>
+        <circle cx="250.1" cy="252" r="184.1" fill="none" stroke="#fff" strokeMiterlimit="10" strokeWidth="2" />
       </g>
       <g id="dots">
         <circle cx="250.1" cy="67.9" r="4.7" fill="#fff"/>
@@ -44,7 +44,7 @@ export const HardCodedRune: React.FC = () => {
       <g id="path">
         <polyline className="line"
                   points="433.1 271.5 287.8 432.1 90.3 343.4 325 83.8 287.8 432.1 141.4 400.5 113.9 128.1 409.3 344.3"
-                  fill="none" stroke="#fff" strokeLinecap="round" strokeLinejoin="round"/>
+                  fill="none" stroke="#fff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
       </g>
     </svg>
   )

@@ -21,7 +21,6 @@ export const MintStep: React.FC<MintStepProps> = ({ selectedN, onCancel, onSucce
   const [isMinting, setIsMinting] = useState(false)
   const [mintingTxn, setMintingTxn] = useState<string | null>(null)
   const [errorMessage, setErrorMessage] = useState<string | null>(null)
-  const [svgContent, setSvgContent] = useState<string | null>(null)
 
   const numericId = parseInt(selectedN.id)
 
@@ -75,7 +74,7 @@ export const MintStep: React.FC<MintStepProps> = ({ selectedN, onCancel, onSucce
         Mint Rune
       </Heading>
       <Text>You are about to mint a Rune with N #{selectedN.id}</Text>
-      <Box maxWidth="400px" width="90%" marginX="auto" marginY={3}>
+      <Box maxWidth="400px" width="90%" marginX="auto" marginY={3}  borderWidth="4px" borderColor="transparent" borderStyle="solid">
         {(errorMessage) && (
           <Alert status="error" mb={3}>
             <AlertIcon/>

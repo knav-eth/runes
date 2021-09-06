@@ -1,6 +1,7 @@
 import { Box, Button, Flex, Heading, Text } from "@chakra-ui/react"
 
 import "@fontsource/source-serif-pro/400.css"
+import { motion } from "framer-motion"
 import { useRouter } from "next/router"
 import React, { useCallback } from "react"
 import { ConnectWalletButton } from "../components/ConnectWalletButton"
@@ -9,6 +10,7 @@ import Layout from "../components/Layout"
 import { useWallet } from "../hooks/useWallet"
 import { ROUTES } from "../utils/routing"
 
+const MotionBox = motion(Box)
 
 export default function Home() {
   const { isConnected } = useWallet()
@@ -20,17 +22,17 @@ export default function Home() {
 
   return (
     <Layout hideLogo>
-      <Box textAlign="center" width="full">
+      <MotionBox textAlign="center" width="full"  opacity={0} animate={{ opacity: 1}} transition={{ delay: .5, duration: 1 }}>
         <Box position="relative" zIndex={1}>
         <Heading
           as="h1"
           size="4xl"
-          fontSize={["4xl", "6xl", "8xl"]}
+          fontSize={["7xl", "7xl", "8xl"]}
           fontWeight="400"
           mb={2}
           color="#9999"
         >
-          ru<span style={{ color: "#fff"}}>n</span>es
+          ru<MotionBox display="inline-block" textShadow={"0px 0px 0px rgba(0, 0, 0, 0)"} animate={{ color: "#FFF", textShadow: "0px 0px 20px rgba(255, 255, 255, .7)"}} transition={{ duration: 2, delay: 1 }}>n</MotionBox>es
         </Heading>
         <Text fontSize={["1.25rem"]} color="whiteAlpha.700">
           Generated and stored on chain using one of your Ns
@@ -51,7 +53,7 @@ export default function Home() {
 
         <Box textAlign="center" my={8}>
           {isConnected ? (
-            <Button onClick={handleGetStarted}>
+            <Button onClick={handleGetStarted} size="lg">
               Get Started
             </Button>
           ) : (
@@ -60,7 +62,7 @@ export default function Home() {
             </Box>
           )}
         </Box>
-      </Box>
+      </MotionBox>
     </Layout>
   )
 }
