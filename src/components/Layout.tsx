@@ -18,8 +18,8 @@ const Layout: React.FC<LayoutProps> = ({ children, containerProps, requireWallet
       <Flex flexDir="column" minH="100vh">
         <Flex p={containerPadding} zIndex={1} alignItems="center">
           <Link href="/" passHref>
-            <Text cursor="pointer" _hover={{ color: "whiteAlpha.700" }}>
-              Runes
+            <Text cursor="pointer" _hover={{ color: "whiteAlpha.700" }} fontFamily={"Source Serif Pro"}>
+              runes
             </Text>
           </Link>
           <Flex justifyContent="flex-end" flex={1}>

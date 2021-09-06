@@ -8,6 +8,7 @@ import { useWallet } from "../hooks/useWallet"
 import { ROUTES } from "../utils/routing"
 
 import "@fontsource/source-serif-pro/400.css"
+import { motion } from "framer-motion"
 
 
 export default function Home() {
@@ -17,10 +18,10 @@ export default function Home() {
   const handleGetStarted = useCallback(() => {
     router.push(ROUTES.Mint)
   }, [router])
-
+  const MotionBox = motion(Box)
   return (
     <Layout>
-      <Box textAlign="center" width="full">
+      <MotionBox textAlign="center" width="full"  opacity={0} animate={{ opacity: 1}} transition={{ delay: .5, duration: 1 }}>
         <Box position="relative" zIndex={1}>
         <Heading
           as="h1"
@@ -30,7 +31,7 @@ export default function Home() {
           mb={2}
           color="#9999"
         >
-          ru<span style={{ color: "#fff"}}>n</span>es
+          ru<MotionBox display="inline-block" textShadow={"0px 0px 0px rgba(0, 0, 0, 0)"} animate={{ color: "#FFF", textShadow: "0px 0px 20px rgba(255, 255, 255, .7)"}} transition={{ duration: 2, delay: 1 }}>n</MotionBox>es
         </Heading>
         <Text fontSize={["1.25rem"]} color="whiteAlpha.700">
           Generated and stored on chain using one of your Ns
@@ -51,7 +52,7 @@ export default function Home() {
 
         <Box textAlign="center" my={8}>
           {isConnected ? (
-            <Button onClick={handleGetStarted}>
+            <Button onClick={handleGetStarted} size="lg">
               Get Started
             </Button>
           ) : (
@@ -60,7 +61,7 @@ export default function Home() {
             </Box>
           )}
         </Box>
-      </Box>
+      </MotionBox>
     </Layout>
   )
 }

@@ -20,7 +20,9 @@ export const MintStep: React.FC<MintStepProps> = ({ selectedN, onCancel }) => {
         Mint Rune
       </Heading>
       <Text>You are about to mint a Rune with N #{selectedN.id}</Text>
-      <Box maxWidth="400px" width="90%" marginX="auto" marginY={3}>
+      <Box maxWidth="400px" width="90%" marginX="auto" marginY={3}  borderWidth="4px"
+              borderColor="transparent"
+              borderStyle="solid">
         <NCard n={selectedN} />
       </Box>
       <Box>

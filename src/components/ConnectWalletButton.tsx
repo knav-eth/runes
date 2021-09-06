@@ -14,7 +14,7 @@ export const ConnectWalletButton: React.FC = () => {
             <MenuButton
               isActive={isOpen}
               as={Button}
-              size="lg"
+              size="md"
             >
               {address && address.slice(0, 8)}
             </MenuButton>
@@ -28,7 +28,7 @@ export const ConnectWalletButton: React.FC = () => {
   }
 
   return (
-    <Button size="lg" onClick={connect}>
+    <Button size="md" onClick={connect}>
       Connect Wallet
     </Button>
   )
