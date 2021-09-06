@@ -31,7 +31,6 @@ export type EthNetworkConfig = {
   contractConfig: ContractConfiguration
   nGraphUrl: string
   baseFrontendUrl: string
-  envChecker: RegExp
   openSeaBaseUrl?: string
 }
 
@@ -42,7 +41,6 @@ const localNetworkConfig: EthNetworkConfig = {
   contractConfig: localContractConfig.localhost,
   nGraphUrl: "https://api.thegraph.com/subgraphs/name/knav-eth/the-n-project",
   baseFrontendUrl: "http://localhost:3000",
-  envChecker: /(localhost:3000|localtest\.me:3000)/g,
 }
 
 export const NETWORK_CONFIG: Record<EthNetwork, EthNetworkConfig> = {
@@ -59,7 +57,6 @@ export const NETWORK_CONFIG: Record<EthNetwork, EthNetworkConfig> = {
     contractConfig: contractConfig.mainnet,
     nGraphUrl: "https://api.thegraph.com/subgraphs/name/knav-eth/the-n-project",
     baseFrontendUrl: "https://nrunes.io",
-    envChecker: /nrunes\.io/g,
     openSeaBaseUrl: "https://opensea.io",
   },
   rinkeby: {
@@ -70,7 +67,6 @@ export const NETWORK_CONFIG: Record<EthNetwork, EthNetworkConfig> = {
     contractConfig: contractConfig.rinkeby,
     nGraphUrl: "https://api.thegraph.com/subgraphs/name/knav-eth/the-n-project", // TODO: public N contract and subgraph on rinkeby for testing
     baseFrontendUrl: "https://runes.vercel.app",
-    envChecker: /runes.*\.vercel\.app/g,
     openSeaBaseUrl: "https://testnets.opensea.io",
   },
 }
