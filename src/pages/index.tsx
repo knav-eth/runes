@@ -1,9 +1,11 @@
-import { Box, Heading, Text } from "@chakra-ui/react"
+import { Box, Flex, Heading, Text } from "@chakra-ui/react"
 import React from "react"
 import { ConnectWalletButton } from "../components/ConnectWalletButton"
+import { HardCodedRune } from "../components/HardCodedRune"
 import Layout from "../components/Layout"
 import NGrid from "../components/NGrid"
 import { useWallet } from "../hooks/useWallet"
+
 
 export default function Home() {
   const { isConnected } = useWallet()
@@ -29,6 +31,10 @@ export default function Home() {
         <Text fontSize={["1rem", "1.2rem"]} color="whiteAlpha.700" mt={3}>
           Select one of your Ns to get started
         </Text>
+
+        <Flex justifyContent="center" marginTop={4}>
+          <HardCodedRune/>
+        </Flex>
 
         <Box textAlign="center" my={8}>
           {isConnected ? (
