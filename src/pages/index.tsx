@@ -26,7 +26,7 @@ export default function Home() {
         <Heading
           as="h1"
           size="4xl"
-          fontSize={["4xl", "6xl", "8xl"]}
+          fontSize={["7xl", "7xl", "8xl"]}
           fontWeight="400"
           mb={2}
           color="#9999"
