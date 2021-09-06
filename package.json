@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "prebuild": "node ./preBuild.js",
+    "prebuild": "node fixLocalSettings.js",
+    "postinstall": "node fixLocalSettings.js",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
