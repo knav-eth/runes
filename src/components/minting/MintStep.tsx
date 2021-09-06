@@ -21,7 +21,15 @@ export const MintStep: React.FC<MintStepProps> = ({ selectedN, onCancel }) => {
       </Heading>
       <Text>You are about to mint a Rune with N #{selectedN.id}</Text>
       <Box maxWidth="400px" width="90%" marginX="auto" marginY={3}>
-        <NCard n={selectedN} />
+        <Box
+          backgroundColor="gray.800"
+          borderWidth="4px"
+          borderColor="transparent"
+          borderStyle="solid"
+          width="full"
+        >
+          <NCard n={selectedN} />
+        </Box>
       </Box>
       <Box>
         <Button display="inline-block" mr={2}>
