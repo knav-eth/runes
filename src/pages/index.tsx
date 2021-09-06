@@ -1,14 +1,20 @@
-import { Box, Flex, Heading, Text } from "@chakra-ui/react"
-import React from "react"
+import { Box, Button, Flex, Heading, Text } from "@chakra-ui/react"
+import { useRouter } from "next/router"
+import React, { useCallback } from "react"
 import { ConnectWalletButton } from "../components/ConnectWalletButton"
 import { HardCodedRune } from "../components/HardCodedRune"
 import Layout from "../components/Layout"
-import NGrid from "../components/NGrid"
 import { useWallet } from "../hooks/useWallet"
+import { ROUTES } from "../utils/routing"
 
 
 export default function Home() {
   const { isConnected } = useWallet()
+
+  const router = useRouter()
+  const handleGetStarted = useCallback(() => {
+    router.push(ROUTES.Mint)
+  }, [router])
 
   return (
     <Layout>
@@ -38,7 +44,9 @@ export default function Home() {
 
         <Box textAlign="center" my={8}>
           {isConnected ? (
-            <NGrid/>
+            <Button onClick={handleGetStarted}>
+              Get Started
+            </Button>
           ) : (
             <Box>
               <Text marginTop={16} marginBottom={8}>

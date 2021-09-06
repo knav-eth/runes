@@ -1,6 +1,5 @@
-import { AspectRatio, Flex, Spinner } from "@chakra-ui/react"
-import React, { useCallback, useEffect, useState } from "react"
-import { useNContract } from "../../hooks/useNContract"
+import { AspectRatio, Flex } from "@chakra-ui/react"
+import React, { useMemo } from "react"
 import { NCardProps } from "./props"
 
 type DecodedNMetadata = {
@@ -9,36 +8,16 @@ type DecodedNMetadata = {
   image: string
 }
 
-const NCard: React.FC<NCardProps> = ({ id, containerProps }) => {
-  const { nContract } = useNContract()
-  const [svgData, setSvgData] = useState<string | null>(null)
-
-  const fetchSvgDataFromContract = useCallback(async (tokenId: number) => {
-    try {
-      console.log("Attempting to fetch metadata for token:", tokenId)
-      const metadataUri = await nContract.tokenURI(tokenId)
-      const decoded: DecodedNMetadata = JSON.parse(atob(metadataUri.substr(29)))
-      setSvgData(decoded.image)
-    } catch (e) {
-      console.error(`Error getting svg data: ${e}`)
-    }
-  }, [nContract])
-
-  useEffect(() => {
-    fetchSvgDataFromContract(id)
-  }, [id, fetchSvgDataFromContract])
+const NCard: React.FC<NCardProps> = ({ n, containerProps }) => {
+  const svgData: string = useMemo(() => {
+    const decoded: DecodedNMetadata = JSON.parse(atob(n.metadataURI.substr(29)))
+    return decoded.image
+  }, [n])
 
   return (
     <AspectRatio ratio={1}>
       <Flex justifyContent="center" alignItems="center" {...containerProps}>
-        {
-          svgData ? (
-            // eslint-disable-next-line @next/next/no-img-element
-            <img src={svgData} alt={`N #${id}`}/>
-          ) : (
-            <Spinner/>
-          )
-        }
+        <img src={svgData} alt={`N #${n.id}`}/>
       </Flex>
     </AspectRatio>
   )
