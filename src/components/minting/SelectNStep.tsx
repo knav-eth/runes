@@ -28,7 +28,7 @@ export const SelectNStep: React.FC<SelectNStepProps> = ({ onSelectN, availableNs
               <Spinner size="xl"/>
             </Box>
           ) : (
-            <Box paddingX={["2rem", null, "3rem"]}>
+            <Box paddingX={[null, null, "3rem"]}>
               {!availableNs.length && (
                 <Box>
                   <Text marginTop={16} marginBottom={8} color="whiteAlpha.700">
