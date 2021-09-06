@@ -1,6 +1,11 @@
-import { Box, Button, Heading, Text } from "@chakra-ui/react"
-import React from "react"
+import { Alert, AlertIcon, Box, Button, Heading, Link, Text } from "@chakra-ui/react"
+import { BigNumber } from "@ethersproject/bignumber/src.ts/bignumber"
+import React, { useCallback, useMemo, useState } from "react"
 import { SubgraphN } from "../../clients/n"
+import { useMainContract } from "../../hooks/useMainContract"
+import { useWallet } from "../../hooks/useWallet"
+import { parseWalletError } from "../../utils/error"
+import { getBlockExplorerUrl } from "../../utils/network"
 import NCard from "../NCard/NCard"
 
 export type MintStepProps = {
@@ -9,6 +14,52 @@ export type MintStepProps = {
 }
 
 export const MintStep: React.FC<MintStepProps> = ({ selectedN, onCancel }) => {
+  const { wallet } = useWallet()
+  const provider = wallet?.web3Provider
+  const { mainContract } = useMainContract()
+  const [isMinting, setIsMinting] = useState(false)
+  const [successful, setSuccessful] = useState(false)
+  const [mintingTxn, setMintingTxn] = useState<string | null>(null)
+  const [errorMessage, setErrorMessage] = useState<string | null>(null)
+
+  const handleMint = useCallback(async () => {
+    if (!provider) return
+    try {
+      setIsMinting(true)
+      setErrorMessage(null)
+      const signer = provider.getSigner()
+      const contractWithSigner = mainContract.connect(signer)
+      const numericId = parseInt(selectedN.id)
+      const result = await contractWithSigner.mintWithN(numericId)
+
+      setMintingTxn(result.hash)
+      const receipt = await result.wait()
+
+      const mintedBigNo: BigNumber = receipt.events?.[0]?.args?.[2]
+      const mintedId = parseInt(mintedBigNo._hex, 16)
+      console.log(`Minted Token ID: ${mintedId}`)
+    } catch (e) {
+      // @ts-ignore
+      window.MM_ERR = e
+      console.error(`Error while minting: ${e.message}`)
+      setMintingTxn(null)
+      setErrorMessage(parseWalletError(e) ?? "Unexpected Error")
+    } finally {
+      setIsMinting(false)
+    }
+  }, [setErrorMessage, provider])
+
+  const transactionUrl: string | undefined = useMemo(() => {
+    if (!mintingTxn || !isMinting) {
+      return
+    }
+    const blockExplorerUrl = getBlockExplorerUrl()
+    if (!blockExplorerUrl) {
+      return
+    }
+    return `${blockExplorerUrl}/tx/${mintingTxn}`
+  }, [isMinting, mintingTxn])
+
   return (
     <Box textAlign="center" width="full">
       <Heading
@@ -21,21 +72,54 @@ export const MintStep: React.FC<MintStepProps> = ({ selectedN, onCancel }) => {
       </Heading>
       <Text>You are about to mint a Rune with N #{selectedN.id}</Text>
       <Box maxWidth="400px" width="90%" marginX="auto" marginY={3}>
+        {(errorMessage) && (
+          <Alert status="error" mb={3}>
+            <AlertIcon/>
+            <Text fontWeight="semibold" marginRight={1}>Error:</Text>
+            {errorMessage}
+          </Alert>
+        )}
+        {(transactionUrl) && (
+          <Link
+            href={transactionUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            mb={3}
+          >
+            <Alert status="info" flexDirection={["column", "row"]}>
+              <AlertIcon/>
+              <Text fontWeight="semibold" marginRight={2}>Minting in progress</Text>
+              <Text>
+                Click to view transaction
+              </Text>
+            </Alert>
+          </Link>
+        )}
+
         <Box
           backgroundColor="gray.800"
           borderWidth="4px"
           borderColor="transparent"
           borderStyle="solid"
           width="full"
+          position="relative"
         >
+          <Box
+            position="absolute"
+            top={0}
+            bottom={0}
+            left={0}
+            right={0}
+            zIndex={9999}
+          ></Box>
           <NCard n={selectedN} />
         </Box>
       </Box>
       <Box>
-        <Button display="inline-block" mr={2}>
+        <Button display="inline-block" mr={2} isLoading={isMinting} onClick={handleMint}>
           Mint
         </Button>
-        <Button onClick={onCancel} display="inline-block" ml={2}>
+        <Button onClick={onCancel} display="inline-block" ml={2} isDisabled={isMinting}>
           Cancel
         </Button>
       </Box>
