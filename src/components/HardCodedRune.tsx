@@ -1,19 +1,17 @@
 import React from "react"
 
 const styles = `
-        @keyframes offset {
-        50 % { stroke-dashoffset: 0;}
-        100% {stroke-dashoffset: 2583;}
+      @keyframes offset {
+        50% { stroke-dashoffset: 0; }
+        100% { stroke-dashoffset: 2583; }
       }
-        .line {
-        stroke - dasharray: 2583;
+      .line {
+        stroke-dasharray: 2583;
         stroke-dashoffset: 2583;
         animation-delay: 1s;
         animation: offset 10s ease-in-out infinite;
         stroke-width: 2;
       }
-        circle, polyline {stroke: whiteyeah, w;}
-        #dots circle {fill: white;}
 `
 
 export const HardCodedRune: React.FC = () => {
