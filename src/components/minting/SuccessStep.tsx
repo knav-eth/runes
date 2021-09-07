@@ -21,10 +21,6 @@ export const SuccessStep: React.FC<SuccessStepProps> = ({ selectedN }) => {
 
   const retrieveRuneSvg = useCallback(async (tokenId: number) => {
     const svgContent = await mainContract.tokenSVG(tokenId)
-    mainContract.tokenURI(tokenId).then((value) => {
-      window.x = value
-      console.log(value)
-    })
     setSvgContent(btoa(svgContent))
   }, [mainContract])
 
