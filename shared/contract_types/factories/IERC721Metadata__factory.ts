@@ -2,12 +2,9 @@
 /* tslint:disable */
 /* eslint-disable */
 
-import { Contract, Signer, utils } from "ethers";
-import { Provider } from "@ethersproject/providers";
-import type {
-  IERC721Metadata,
-  IERC721MetadataInterface,
-} from "../IERC721Metadata";
+import { Contract, Signer, utils } from "ethers"
+import { Provider } from "@ethersproject/providers"
+import type { IERC721Metadata, IERC721MetadataInterface } from "../IERC721Metadata"
 
 const _abi = [
   {
@@ -340,17 +337,14 @@ const _abi = [
     stateMutability: "nonpayable",
     type: "function",
   },
-];
+]
 
 export class IERC721Metadata__factory {
-  static readonly abi = _abi;
+  static readonly abi = _abi
   static createInterface(): IERC721MetadataInterface {
-    return new utils.Interface(_abi) as IERC721MetadataInterface;
+    return new utils.Interface(_abi) as IERC721MetadataInterface
   }
-  static connect(
-    address: string,
-    signerOrProvider: Signer | Provider
-  ): IERC721Metadata {
-    return new Contract(address, _abi, signerOrProvider) as IERC721Metadata;
+  static connect(address: string, signerOrProvider: Signer | Provider): IERC721Metadata {
+    return new Contract(address, _abi, signerOrProvider) as IERC721Metadata
   }
 }

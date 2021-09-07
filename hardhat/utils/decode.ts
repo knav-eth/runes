@@ -1,4 +1,4 @@
-const abiDecoder = require('abi-decoder')
+const abiDecoder = require("abi-decoder")
 
 export type DecodedParam = {
   name: string
@@ -7,7 +7,7 @@ export type DecodedParam = {
 }
 
 export type DecodeResult = {
-  name: string,
+  name: string
   params: Array<DecodedParam>
 }
 

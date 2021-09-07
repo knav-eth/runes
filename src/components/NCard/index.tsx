@@ -5,6 +5,6 @@ const DynamicComponentWithNoSSR = dynamic(() => import("./NCard"), {
   ssr: false,
 })
 
-const LazyNCard = (props: NCardProps) => <DynamicComponentWithNoSSR {...props}/>
+const LazyNCard = (props: NCardProps) => <DynamicComponentWithNoSSR {...props} />
 
 export default LazyNCard

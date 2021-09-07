@@ -21,7 +21,9 @@ export function getColorOverlayedOnBackground(
 
 export function calculateHoveringColor(colorStr: string): string {
   const color = Color(colorStr)
-  return color.isDark() ? getColorOverlayedOnBackground("#FFF", colorStr, 0.4) : getColorOverlayedOnBackground("#000", colorStr, 0.4)
+  return color.isDark()
+    ? getColorOverlayedOnBackground("#FFF", colorStr, 0.4)
+    : getColorOverlayedOnBackground("#000", colorStr, 0.4)
 }
 
 export function getBackgroundColorShade(baseColor: string, alpha = 0.7): string {

@@ -2,12 +2,9 @@
 /* tslint:disable */
 /* eslint-disable */
 
-import { Contract, Signer, utils } from "ethers";
-import { Provider } from "@ethersproject/providers";
-import type {
-  ERC721Enumerable,
-  ERC721EnumerableInterface,
-} from "../ERC721Enumerable";
+import { Contract, Signer, utils } from "ethers"
+import { Provider } from "@ethersproject/providers"
+import type { ERC721Enumerable, ERC721EnumerableInterface } from "../ERC721Enumerable"
 
 const _abi = [
   {
@@ -396,17 +393,14 @@ const _abi = [
     stateMutability: "nonpayable",
     type: "function",
   },
-];
+]
 
 export class ERC721Enumerable__factory {
-  static readonly abi = _abi;
+  static readonly abi = _abi
   static createInterface(): ERC721EnumerableInterface {
-    return new utils.Interface(_abi) as ERC721EnumerableInterface;
+    return new utils.Interface(_abi) as ERC721EnumerableInterface
   }
-  static connect(
-    address: string,
-    signerOrProvider: Signer | Provider
-  ): ERC721Enumerable {
-    return new Contract(address, _abi, signerOrProvider) as ERC721Enumerable;
+  static connect(address: string, signerOrProvider: Signer | Provider): ERC721Enumerable {
+    return new Contract(address, _abi, signerOrProvider) as ERC721Enumerable
   }
 }

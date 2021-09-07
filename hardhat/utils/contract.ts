@@ -7,10 +7,18 @@ export const SHARED_DIRECTORY = path.join(__dirname, "../../shared")
 
 export const SHARED_CONFIG_DIRECTORY = path.join(SHARED_DIRECTORY, "config")
 
-const PERSISTED_ENVIRONMENT_CONFIG_FILE = path.join(SHARED_CONFIG_DIRECTORY, "networks.json")
-const LOCAL_ENVIRONMENT_CONFIG_FILE = path.join(SHARED_CONFIG_DIRECTORY, "networks.local.json")
-const DEFAULT_LOCAL_ENVIRONMENT_CONFIG_FILE = path.join(SHARED_CONFIG_DIRECTORY, "networks.local.example.json")
-
+const PERSISTED_ENVIRONMENT_CONFIG_FILE = path.join(
+  SHARED_CONFIG_DIRECTORY,
+  "networks.json",
+)
+const LOCAL_ENVIRONMENT_CONFIG_FILE = path.join(
+  SHARED_CONFIG_DIRECTORY,
+  "networks.local.json",
+)
+const DEFAULT_LOCAL_ENVIRONMENT_CONFIG_FILE = path.join(
+  SHARED_CONFIG_DIRECTORY,
+  "networks.local.example.json",
+)
 
 export function getActiveHardhatNetwork(hre: HardhatRuntimeEnvironment): EthNetwork {
   const ethNetwork: EthNetwork = EthNetwork[hre.network.name as EthNetwork]
@@ -25,7 +33,9 @@ export type EnvironmentConfiguration = {
   nContractAddress: string
 }
 
-export function loadLocalEnvironmentConfig(): Partial<Record<EthNetwork, EnvironmentConfiguration>> {
+export function loadLocalEnvironmentConfig(): Partial<
+  Record<EthNetwork, EnvironmentConfiguration>
+> {
   let localEnvironmentConfig: Partial<Record<EthNetwork, EnvironmentConfiguration>>
 
   try {
@@ -38,13 +48,17 @@ export function loadLocalEnvironmentConfig(): Partial<Record<EthNetwork, Environ
   return localEnvironmentConfig
 }
 
-export function loadPersistedConfig(): Partial<Record<EthNetwork, EnvironmentConfiguration>> {
+export function loadPersistedConfig(): Partial<
+  Record<EthNetwork, EnvironmentConfiguration>
+> {
   return require(PERSISTED_ENVIRONMENT_CONFIG_FILE)
 }
 
 function getAllEnvironmentConfig(): Partial<Record<EthNetwork, EnvironmentConfiguration>> {
-  const persistedEnvironmentConfig: Partial<Record<EthNetwork, EnvironmentConfiguration>> = loadPersistedConfig()
-  const localEnvironmentConfig: Partial<Record<EthNetwork, EnvironmentConfiguration>> = loadLocalEnvironmentConfig()
+  const persistedEnvironmentConfig: Partial<Record<EthNetwork, EnvironmentConfiguration>> =
+    loadPersistedConfig()
+  const localEnvironmentConfig: Partial<Record<EthNetwork, EnvironmentConfiguration>> =
+    loadLocalEnvironmentConfig()
 
   return {
     ...persistedEnvironmentConfig,
@@ -52,7 +66,9 @@ function getAllEnvironmentConfig(): Partial<Record<EthNetwork, EnvironmentConfig
   }
 }
 
-export function getEnvironmentConfiguration(hre: HardhatRuntimeEnvironment): EnvironmentConfiguration {
+export function getEnvironmentConfiguration(
+  hre: HardhatRuntimeEnvironment,
+): EnvironmentConfiguration {
   const allEnvConfig = getAllEnvironmentConfig()
   const currentNetwork = getActiveHardhatNetwork(hre)
   const envConfig = allEnvConfig[currentNetwork]
@@ -70,9 +86,13 @@ export function getNContractAddress(hre: HardhatRuntimeEnvironment): string {
   return getEnvironmentConfiguration(hre).nContractAddress
 }
 
-function persistConfig(hre: HardhatRuntimeEnvironment, newConfig: EnvironmentConfiguration) {
+function persistConfig(
+  hre: HardhatRuntimeEnvironment,
+  newConfig: EnvironmentConfiguration,
+) {
   const currentNetwork = getActiveHardhatNetwork(hre)
-  const isLocal = currentNetwork === EthNetwork.hardhat || currentNetwork == EthNetwork.localhost
+  const isLocal =
+    currentNetwork === EthNetwork.hardhat || currentNetwork == EthNetwork.localhost
   const existingSavedConfig = isLocal ? loadLocalEnvironmentConfig() : loadPersistedConfig()
 
   const modifiedConfig = {
@@ -80,12 +100,17 @@ function persistConfig(hre: HardhatRuntimeEnvironment, newConfig: EnvironmentCon
     [currentNetwork]: newConfig,
   }
 
-  const filePath = isLocal ? LOCAL_ENVIRONMENT_CONFIG_FILE : PERSISTED_ENVIRONMENT_CONFIG_FILE
+  const filePath = isLocal
+    ? LOCAL_ENVIRONMENT_CONFIG_FILE
+    : PERSISTED_ENVIRONMENT_CONFIG_FILE
   const contents = JSON.stringify(modifiedConfig, null, 2)
   fs.writeFileSync(filePath, contents)
 }
 
-export function persistMainContractAddress(hre: HardhatRuntimeEnvironment, mainContractAddress: string) {
+export function persistMainContractAddress(
+  hre: HardhatRuntimeEnvironment,
+  mainContractAddress: string,
+) {
   const existingConfig = getEnvironmentConfiguration(hre)
   const newConfig: EnvironmentConfiguration = {
     ...existingConfig,
@@ -95,7 +120,10 @@ export function persistMainContractAddress(hre: HardhatRuntimeEnvironment, mainC
   persistConfig(hre, newConfig)
 }
 
-export function persistNContractAddress(hre: HardhatRuntimeEnvironment, nContractAddress: string) {
+export function persistNContractAddress(
+  hre: HardhatRuntimeEnvironment,
+  nContractAddress: string,
+) {
   const existingConfig = getEnvironmentConfiguration(hre)
   const newConfig: EnvironmentConfiguration = {
     ...existingConfig,

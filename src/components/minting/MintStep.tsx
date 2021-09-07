@@ -60,35 +60,36 @@ export const MintStep: React.FC<MintStepProps> = ({ selectedN, onCancel, onSucce
 
   return (
     <Box textAlign="center" width="full">
-      <Heading
-        as="h1"
-        size="4xl"
-        fontSize={["2xl", "3xl", "4xl"]}
-        mb={4}
-      >
+      <Heading as="h1" size="4xl" fontSize={["2xl", "3xl", "4xl"]} mb={4}>
         Mint Rune
       </Heading>
       <Text>You are about to mint a Rune with N #{selectedN.id}</Text>
-      <Box maxWidth="400px" width="90%" marginX="auto" marginY={3}  borderWidth="4px" borderColor="transparent" borderStyle="solid">
-        {(errorMessage) && (
+      <Box
+        maxWidth="400px"
+        width="90%"
+        marginX="auto"
+        marginY={3}
+        borderWidth="4px"
+        borderColor="transparent"
+        borderStyle="solid"
+      >
+        {errorMessage && (
           <Alert status="error" mb={3}>
-            <AlertIcon/>
-            <Text fontWeight="semibold" marginRight={1}>Error:</Text>
+            <AlertIcon />
+            <Text fontWeight="semibold" marginRight={1}>
+              Error:
+            </Text>
             {errorMessage}
           </Alert>
         )}
-        {(transactionUrl) && (
-          <Link
-            href={transactionUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
+        {transactionUrl && (
+          <Link href={transactionUrl} target="_blank" rel="noopener noreferrer">
             <Alert status="info" flexDirection={["column", "row"]} mb={3}>
-              <AlertIcon/>
-              <Text fontWeight="semibold" marginRight={2}>Minting in progress</Text>
-              <Text>
-                Click to view transaction
+              <AlertIcon />
+              <Text fontWeight="semibold" marginRight={2}>
+                Minting in progress
               </Text>
+              <Text>Click to view transaction</Text>
             </Alert>
           </Link>
         )}

@@ -7,11 +7,13 @@ export const MotionGridItem = motion(GridItem)
 export const GRID_ANIMATION_VARIANTS = {
   hidden: { opacity: 0, y: 50 },
   show: {
-    opacity: 1, y: 0, transition: {
+    opacity: 1,
+    y: 0,
+    transition: {
       staggerChildren: 0.04,
       delayChildren: 0,
       ease: "easeOut",
-      duration: .7,
+      duration: 0.7,
     },
   },
 }

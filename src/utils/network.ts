@@ -1,6 +1,5 @@
 import { EthNetwork, EthNetworkConfig, NETWORK_CONFIG } from "../../shared/config/network"
 
-
 export function getCurrentNetwork(): EthNetwork {
   const envVarNetName = process.env.NEXT_PUBLIC_ETH_NETWORK ?? "mainnet"
   const ethNetwork: EthNetwork = EthNetwork[envVarNetName.toLowerCase() as EthNetwork]

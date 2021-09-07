@@ -2,12 +2,9 @@
 /* tslint:disable */
 /* eslint-disable */
 
-import { Contract, Signer, utils } from "ethers";
-import { Provider } from "@ethersproject/providers";
-import type {
-  IERC721Receiver,
-  IERC721ReceiverInterface,
-} from "../IERC721Receiver";
+import { Contract, Signer, utils } from "ethers"
+import { Provider } from "@ethersproject/providers"
+import type { IERC721Receiver, IERC721ReceiverInterface } from "../IERC721Receiver"
 
 const _abi = [
   {
@@ -44,17 +41,14 @@ const _abi = [
     stateMutability: "nonpayable",
     type: "function",
   },
-];
+]
 
 export class IERC721Receiver__factory {
-  static readonly abi = _abi;
+  static readonly abi = _abi
   static createInterface(): IERC721ReceiverInterface {
-    return new utils.Interface(_abi) as IERC721ReceiverInterface;
+    return new utils.Interface(_abi) as IERC721ReceiverInterface
   }
-  static connect(
-    address: string,
-    signerOrProvider: Signer | Provider
-  ): IERC721Receiver {
-    return new Contract(address, _abi, signerOrProvider) as IERC721Receiver;
+  static connect(address: string, signerOrProvider: Signer | Provider): IERC721Receiver {
+    return new Contract(address, _abi, signerOrProvider) as IERC721Receiver
   }
 }

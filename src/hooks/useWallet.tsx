@@ -134,12 +134,14 @@ export const WalletProvider: React.FC<WalletProviderProps> = ({ children }) => {
   }, [provider, disconnect])
 
   return (
-    <WalletContext.Provider value={{
-      connect,
-      disconnect,
-      wallet,
-      loading,
-    }}>
+    <WalletContext.Provider
+      value={{
+        connect,
+        disconnect,
+        wallet,
+        loading,
+      }}
+    >
       {children}
     </WalletContext.Provider>
   )

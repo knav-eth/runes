@@ -1,28 +1,28 @@
-html, body {
-    padding: 0;
-    margin: 0;
-    font-family: sans-serif;
-    font-family: 'Josefin Sans', sans-serif;
-    font-family: monospace;
-    background: #fff;
+html,
+body {
+  padding: 0;
+  margin: 0;
+  font-family: sans-serif;
+  font-family: "Josefin Sans", sans-serif;
+  font-family: monospace;
+  background: #fff;
 }
 
 a {
-    color: inherit;
-    text-decoration: none;
+  color: inherit;
+  text-decoration: none;
 }
 
 footer {
-    clear: left;
-    text-align: center;
-    margin: 40px;
+  clear: left;
+  text-align: center;
+  margin: 40px;
 }
 
 * {
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 .circle-picker {
-    justify-content: normal;
+  justify-content: normal;
 }
-

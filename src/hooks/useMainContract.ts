@@ -19,12 +19,17 @@ export function useMainContract(): UseMainContractValue {
   const { wallet } = useWallet()
   const injectedProvider = wallet?.web3Provider
   const mainContract = useMemo(
-    () => process.browser ? Rune__factory.connect(getMainContractAddress(), injectedProvider ?? provider) : null,
+    () =>
+      process.browser
+        ? Rune__factory.connect(getMainContractAddress(), injectedProvider ?? provider)
+        : null,
     [provider, injectedProvider],
   )
 
   return {
     mainContract: mainContract!,
-    connectionType: injectedProvider ? ContractConnectionType.Injected : ContractConnectionType.Fallback,
+    connectionType: injectedProvider
+      ? ContractConnectionType.Injected
+      : ContractConnectionType.Fallback,
   }
 }

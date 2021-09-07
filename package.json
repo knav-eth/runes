@@ -13,6 +13,7 @@
     "copyArtifacts": "hardhat copyArtifacts",
     "deploy": "hardhat deploy",
     "deploy:n-rinkeby": "hardhat deploy --network rinkeby",
+    "format": "prettier --loglevel=error --write './**/*.{ts,tsx,js,jsx,json,gql,md,html,css,scss}' './**/*.{ts,tsx,js,jsx,json,gql,md,html,css,scss}'",
     "contract:test": "hardhat test --network hardhat",
     "contract:compile": "hardhat compile"
   },
@@ -63,6 +64,7 @@
     "eslint-config-next": "11.0.1",
     "ethereum-waffle": "^3.4.0",
     "hardhat": "^2.6.1",
+    "prettier": "^2.3.2",
     "ts-node": "^10.2.1",
     "typechain": "^5.1.2",
     "typescript": "4.3.5",

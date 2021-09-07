@@ -2,9 +2,9 @@
 /* tslint:disable */
 /* eslint-disable */
 
-import { Contract, Signer, utils } from "ethers";
-import { Provider } from "@ethersproject/providers";
-import type { IN, INInterface } from "../IN";
+import { Contract, Signer, utils } from "ethers"
+import { Provider } from "@ethersproject/providers"
+import type { IN, INInterface } from "../IN"
 
 const _abi = [
   {
@@ -545,14 +545,14 @@ const _abi = [
     stateMutability: "nonpayable",
     type: "function",
   },
-];
+]
 
 export class IN__factory {
-  static readonly abi = _abi;
+  static readonly abi = _abi
   static createInterface(): INInterface {
-    return new utils.Interface(_abi) as INInterface;
+    return new utils.Interface(_abi) as INInterface
   }
   static connect(address: string, signerOrProvider: Signer | Provider): IN {
-    return new Contract(address, _abi, signerOrProvider) as IN;
+    return new Contract(address, _abi, signerOrProvider) as IN
   }
 }

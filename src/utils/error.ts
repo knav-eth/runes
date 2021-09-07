@@ -12,12 +12,12 @@ const ERROR_PARSERS: Array<RegExp> = [
 ]
 
 function parseRevertError(errorMessage: string): string | undefined {
-  return ERROR_PARSERS
-    .map(parser => errorMessage.match(parser)?.[1] ?? undefined)
-    .find((result, index) => {
+  return ERROR_PARSERS.map((parser) => errorMessage.match(parser)?.[1] ?? undefined).find(
+    (result, index) => {
       console.log(index, result)
       return result
-    })
+    },
+  )
 }
 
 export function parseWalletError(err: Web3Error): string | undefined {

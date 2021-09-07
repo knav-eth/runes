@@ -2,9 +2,9 @@
 /* tslint:disable */
 /* eslint-disable */
 
-import { Contract, Signer, utils } from "ethers";
-import { Provider } from "@ethersproject/providers";
-import type { NPassCore, NPassCoreInterface } from "../NPassCore";
+import { Contract, Signer, utils } from "ethers"
+import { Provider } from "@ethersproject/providers"
+import type { NPassCore, NPassCoreInterface } from "../NPassCore"
 
 const _abi = [
   {
@@ -510,17 +510,14 @@ const _abi = [
     stateMutability: "nonpayable",
     type: "function",
   },
-];
+]
 
 export class NPassCore__factory {
-  static readonly abi = _abi;
+  static readonly abi = _abi
   static createInterface(): NPassCoreInterface {
-    return new utils.Interface(_abi) as NPassCoreInterface;
+    return new utils.Interface(_abi) as NPassCoreInterface
   }
-  static connect(
-    address: string,
-    signerOrProvider: Signer | Provider
-  ): NPassCore {
-    return new Contract(address, _abi, signerOrProvider) as NPassCore;
+  static connect(address: string, signerOrProvider: Signer | Provider): NPassCore {
+    return new Contract(address, _abi, signerOrProvider) as NPassCore
   }
 }

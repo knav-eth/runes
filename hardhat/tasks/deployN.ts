@@ -9,7 +9,7 @@ task("deployN", "Deploy N contract (for use with rinkeby)", async (taskArgs, hre
 
   const network = getActiveHardhatNetwork(hre)
   if (network === EthNetwork.mainnet) {
-    throw new Error('Attempted to deploy N to mainnet')
+    throw new Error("Attempted to deploy N to mainnet")
   }
 
   const contractFactory = (await hre.ethers.getContractFactory("N")) as N__factory

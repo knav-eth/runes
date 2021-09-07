@@ -2,9 +2,9 @@
 /* tslint:disable */
 /* eslint-disable */
 
-import { Contract, Signer, utils } from "ethers";
-import { Provider } from "@ethersproject/providers";
-import type { NProject, NProjectInterface } from "../NProject";
+import { Contract, Signer, utils } from "ethers"
+import { Provider } from "@ethersproject/providers"
+import type { NProject, NProjectInterface } from "../NProject"
 
 const _abi = [
   {
@@ -615,17 +615,14 @@ const _abi = [
     stateMutability: "nonpayable",
     type: "function",
   },
-];
+]
 
 export class NProject__factory {
-  static readonly abi = _abi;
+  static readonly abi = _abi
   static createInterface(): NProjectInterface {
-    return new utils.Interface(_abi) as NProjectInterface;
+    return new utils.Interface(_abi) as NProjectInterface
   }
-  static connect(
-    address: string,
-    signerOrProvider: Signer | Provider
-  ): NProject {
-    return new Contract(address, _abi, signerOrProvider) as NProject;
+  static connect(address: string, signerOrProvider: Signer | Provider): NProject {
+    return new Contract(address, _abi, signerOrProvider) as NProject
   }
 }

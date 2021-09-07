@@ -21,7 +21,9 @@ export function useNContract(): UseNContractValue {
   const nContract = useMemo(
     // Only attempt to instantiate the N contract when in browser, not during SSR
     () => {
-      if (!process.browser) { return null }
+      if (!process.browser) {
+        return null
+      }
       const contractAddress = getNContractAddress()
       console.log(`Connecting to N contract at address: ${contractAddress}`)
       return N__factory.connect(contractAddress, injectedProvider ?? provider)
@@ -31,6 +33,8 @@ export function useNContract(): UseNContractValue {
 
   return {
     nContract: nContract!, // TODO: Come up with a more typesafe way of handling this
-    connectionType: injectedProvider ? ContractConnectionType.Injected : ContractConnectionType.Fallback,
+    connectionType: injectedProvider
+      ? ContractConnectionType.Injected
+      : ContractConnectionType.Fallback,
   }
 }

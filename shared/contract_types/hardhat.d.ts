@@ -2,90 +2,90 @@
 /* tslint:disable */
 /* eslint-disable */
 
-import { ethers } from "ethers";
+import { ethers } from "ethers"
 import {
   FactoryOptions,
   HardhatEthersHelpers as HardhatEthersHelpersBase,
-} from "@nomiclabs/hardhat-ethers/types";
+} from "@nomiclabs/hardhat-ethers/types"
 
-import * as Contracts from ".";
+import * as Contracts from "."
 
 declare module "hardhat/types/runtime" {
   interface HardhatEthersHelpers extends HardhatEthersHelpersBase {
     getContractFactory(
       name: "Ownable",
-      signerOrOptions?: ethers.Signer | FactoryOptions
-    ): Promise<Contracts.Ownable__factory>;
+      signerOrOptions?: ethers.Signer | FactoryOptions,
+    ): Promise<Contracts.Ownable__factory>
     getContractFactory(
       name: "ERC721",
-      signerOrOptions?: ethers.Signer | FactoryOptions
-    ): Promise<Contracts.ERC721__factory>;
+      signerOrOptions?: ethers.Signer | FactoryOptions,
+    ): Promise<Contracts.ERC721__factory>
     getContractFactory(
       name: "ERC721Enumerable",
-      signerOrOptions?: ethers.Signer | FactoryOptions
-    ): Promise<Contracts.ERC721Enumerable__factory>;
+      signerOrOptions?: ethers.Signer | FactoryOptions,
+    ): Promise<Contracts.ERC721Enumerable__factory>
     getContractFactory(
       name: "IERC721Enumerable",
-      signerOrOptions?: ethers.Signer | FactoryOptions
-    ): Promise<Contracts.IERC721Enumerable__factory>;
+      signerOrOptions?: ethers.Signer | FactoryOptions,
+    ): Promise<Contracts.IERC721Enumerable__factory>
     getContractFactory(
       name: "IERC721Metadata",
-      signerOrOptions?: ethers.Signer | FactoryOptions
-    ): Promise<Contracts.IERC721Metadata__factory>;
+      signerOrOptions?: ethers.Signer | FactoryOptions,
+    ): Promise<Contracts.IERC721Metadata__factory>
     getContractFactory(
       name: "IERC721",
-      signerOrOptions?: ethers.Signer | FactoryOptions
-    ): Promise<Contracts.IERC721__factory>;
+      signerOrOptions?: ethers.Signer | FactoryOptions,
+    ): Promise<Contracts.IERC721__factory>
     getContractFactory(
       name: "IERC721Receiver",
-      signerOrOptions?: ethers.Signer | FactoryOptions
-    ): Promise<Contracts.IERC721Receiver__factory>;
+      signerOrOptions?: ethers.Signer | FactoryOptions,
+    ): Promise<Contracts.IERC721Receiver__factory>
     getContractFactory(
       name: "ERC165",
-      signerOrOptions?: ethers.Signer | FactoryOptions
-    ): Promise<Contracts.ERC165__factory>;
+      signerOrOptions?: ethers.Signer | FactoryOptions,
+    ): Promise<Contracts.ERC165__factory>
     getContractFactory(
       name: "IERC165",
-      signerOrOptions?: ethers.Signer | FactoryOptions
-    ): Promise<Contracts.IERC165__factory>;
+      signerOrOptions?: ethers.Signer | FactoryOptions,
+    ): Promise<Contracts.IERC165__factory>
     getContractFactory(
       name: "NPass",
-      signerOrOptions?: ethers.Signer | FactoryOptions
-    ): Promise<Contracts.NPass__factory>;
+      signerOrOptions?: ethers.Signer | FactoryOptions,
+    ): Promise<Contracts.NPass__factory>
     getContractFactory(
       name: "NPassCore",
-      signerOrOptions?: ethers.Signer | FactoryOptions
-    ): Promise<Contracts.NPassCore__factory>;
+      signerOrOptions?: ethers.Signer | FactoryOptions,
+    ): Promise<Contracts.NPassCore__factory>
     getContractFactory(
       name: "IN",
-      signerOrOptions?: ethers.Signer | FactoryOptions
-    ): Promise<Contracts.IN__factory>;
+      signerOrOptions?: ethers.Signer | FactoryOptions,
+    ): Promise<Contracts.IN__factory>
     getContractFactory(
       name: "Rune",
-      signerOrOptions?: ethers.Signer | FactoryOptions
-    ): Promise<Contracts.Rune__factory>;
+      signerOrOptions?: ethers.Signer | FactoryOptions,
+    ): Promise<Contracts.Rune__factory>
     getContractFactory(
       name: "MockNPass",
-      signerOrOptions?: ethers.Signer | FactoryOptions
-    ): Promise<Contracts.MockNPass__factory>;
+      signerOrOptions?: ethers.Signer | FactoryOptions,
+    ): Promise<Contracts.MockNPass__factory>
     getContractFactory(
       name: "N",
-      signerOrOptions?: ethers.Signer | FactoryOptions
-    ): Promise<Contracts.N__factory>;
+      signerOrOptions?: ethers.Signer | FactoryOptions,
+    ): Promise<Contracts.N__factory>
     getContractFactory(
       name: "NProject",
-      signerOrOptions?: ethers.Signer | FactoryOptions
-    ): Promise<Contracts.NProject__factory>;
+      signerOrOptions?: ethers.Signer | FactoryOptions,
+    ): Promise<Contracts.NProject__factory>
 
     // default types
     getContractFactory(
       name: string,
-      signerOrOptions?: ethers.Signer | FactoryOptions
-    ): Promise<ethers.ContractFactory>;
+      signerOrOptions?: ethers.Signer | FactoryOptions,
+    ): Promise<ethers.ContractFactory>
     getContractFactory(
       abi: any[],
       bytecode: ethers.utils.BytesLike,
-      signer?: ethers.Signer
-    ): Promise<ethers.ContractFactory>;
+      signer?: ethers.Signer,
+    ): Promise<ethers.ContractFactory>
   }
 }

@@ -1,4 +1,4 @@
-import { extendTheme, ThemeConfig } from "@chakra-ui/react";
+import { extendTheme, ThemeConfig } from "@chakra-ui/react"
 
 const config: ThemeConfig = {
   initialColorMode: "dark",
@@ -9,7 +9,7 @@ const theme = extendTheme({
   config,
   fonts: {
     heading: "Source Serif Pro",
-    body: "Roboto"
+    body: "Roboto",
   },
   styles: {
     global: {

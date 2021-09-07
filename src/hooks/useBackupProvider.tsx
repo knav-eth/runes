@@ -11,11 +11,19 @@ export const BackupProviderContext = React.createContext<BackupProviderContextVa
 })
 
 export const BackupProviderProvider: React.FC = ({ children }) => {
-  const provider = useMemo(() => process.browser ? new ethers.providers.JsonRpcProvider(getNetworkConfig().rpcUrl) : null, [])
+  const provider = useMemo(
+    () =>
+      process.browser
+        ? new ethers.providers.JsonRpcProvider(getNetworkConfig().rpcUrl)
+        : null,
+    [],
+  )
   return (
-    <BackupProviderContext.Provider value={{
-      provider,
-    }}>
+    <BackupProviderContext.Provider
+      value={{
+        provider,
+      }}
+    >
       {children}
     </BackupProviderContext.Provider>
   )

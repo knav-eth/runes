@@ -26,7 +26,6 @@ export function useWalletNs(cacheKey?: any): UseWalletNsValue {
     }
   }, [address, fetchWalletNs, cacheKey])
 
-
   return {
     walletNs,
     loading,

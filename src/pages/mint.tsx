@@ -6,7 +6,6 @@ import { SelectNStep } from "../components/minting/SelectNStep"
 import { SuccessStep } from "../components/minting/SuccessStep"
 import { useAvailableWalletNs } from "../hooks/useAvailableWalletNs"
 
-
 export default function Mint() {
   const { availableNs } = useAvailableWalletNs()
   const [selectedN, setSelectedN] = useState<SubgraphN | null>(null)
@@ -22,15 +21,19 @@ export default function Mint() {
 
   return (
     <Layout requireWallet>
-      {
-        selectedN ? isSuccess ? (
-          <SuccessStep selectedN={selectedN}/>
+      {selectedN ? (
+        isSuccess ? (
+          <SuccessStep selectedN={selectedN} />
         ) : (
-          <MintStep onCancel={handleCancelMint} selectedN={selectedN} onSuccess={handleSuccess}/>
-        ) : (
-          <SelectNStep availableNs={availableNs} onSelectN={setSelectedN}/>
+          <MintStep
+            onCancel={handleCancelMint}
+            selectedN={selectedN}
+            onSuccess={handleSuccess}
+          />
         )
-      }
+      ) : (
+        <SelectNStep availableNs={availableNs} onSelectN={setSelectedN} />
+      )}
     </Layout>
   )
 }
