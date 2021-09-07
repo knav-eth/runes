@@ -2,12 +2,7 @@ import { EthNetwork, EthNetworkConfig, NETWORK_CONFIG } from "../../shared/confi
 
 
 export function getCurrentNetwork(): EthNetwork {
-  const envVarNetName = process.env.NEXT_PUBLIC_ETH_NETWORK ?? "mainnet"
-  const ethNetwork: EthNetwork = EthNetwork[envVarNetName.toLowerCase() as EthNetwork]
-  if (!ethNetwork) {
-    throw new Error(`Unrecognized network found: ${envVarNetName}`)
-  }
-  return ethNetwork
+  return EthNetwork.mainnet
 }
 
 export function getNetworkConfig(): EthNetworkConfig {

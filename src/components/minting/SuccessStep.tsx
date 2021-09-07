@@ -30,7 +30,7 @@ export const SuccessStep: React.FC<SuccessStepProps> = ({ selectedN }) => {
 
   const handleDone = useCallback(() => {
     router.push(ROUTES.Home)
-  }, [])
+  }, [router])
 
   useEffect(() => {
     retrieveRuneSvg(numericId)
