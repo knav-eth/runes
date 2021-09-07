@@ -1,14 +1,29 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# The Runes Project
+This repo is an example of how to build an NFT utilizing the [n project](https://opensea.io/collection/n-project). 
 
-## Getting Started
+This project was built by some friends who had an impromptu NFT hackathon after setting out to make a simple 
+tech demo showcasing the n project.
+We hope this is a useful resource for both the n community and the overall NFT community.
+
+The production version of this site can be found at [rvnes.xyz](https://www.rvnes.xyz/) and the 
+collection can be found [here](https://opensea.io/collection/runes-project). 
+
+
+
+## Web app
+
+### Install dependencies
+`yarn install`
+
+### Start a local chain
+`yarn chain`
+
+### Setup the contracts
+With your local chain still running, run:
+`yarn deploy`
 
 First, run the development server:
-
-```bash
-npm run dev
-# or
-yarn dev
-```
+`yarn dev`
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
@@ -18,17 +33,11 @@ You can start editing the page by modifying `pages/index.tsx`. The page auto-upd
 
 The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
 
-## Learn More
+## Deploying to Other Environments
+You can run target any network by appending `--network <network_name>` to any of the previous commands.
 
-To learn more about Next.js, take a look at the following resources:
+For example, to deploy to mainnet you would run:
+`yarn deploy --network mainnet`
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+And to populate an existing Blitnaut contract on Rinkeby you would run:
+`yarn deploy --network rinkeby`
