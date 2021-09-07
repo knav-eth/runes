@@ -105,11 +105,11 @@ export const MintStep: React.FC<MintStepProps> = ({ selectedN, onCancel, onSucce
         </Box>
       </Box>
       <Box>
-        <Button display="inline-block" mr={2} isLoading={isMinting} onClick={handleMint}>
-          Mint
-        </Button>
-        <Button onClick={onCancel} display="inline-block" ml={2} isDisabled={isMinting}>
+        <Button onClick={onCancel} display="inline-block" mr={2} isDisabled={isMinting}>
           Cancel
+        </Button>
+        <Button display="inline-block" ml={2} isLoading={isMinting} onClick={handleMint}>
+          Mint
         </Button>
       </Box>
     </Box>

@@ -4,11 +4,6 @@ import React, { useMemo } from "react"
 import { parseAndExtractImageFromURI } from "../../utils/metadata"
 import { NCardProps } from "./props"
 
-type DecodedNMetadata = {
-  name: string
-  description: string
-  image: string
-}
 
 const NCard: React.FC<NCardProps> = ({ n, containerProps }) => {
   const svgData: string = useMemo(() => {

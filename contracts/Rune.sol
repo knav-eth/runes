@@ -114,8 +114,8 @@ contract Rune is NPass {
                         toString(tokenId),
                         '", "description": "Runes are generated and stored on chain using N tokens.", "image": "data:image/svg+xml;base64,',
                         Base64.encode(bytes(output)),
-                        '", attributes: [{"trait_type": "Essence": "',
-                        Base64.encode(bytes(name)),
+                        '", "attributes": [{"trait_type": "Essence", "value": "',
+                        name,
                         '"}]}'
                     )
                 )
