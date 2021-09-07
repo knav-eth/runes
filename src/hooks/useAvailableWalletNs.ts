@@ -48,7 +48,6 @@ export function useAvailableWalletNs(cacheKey?: any): UseWalletNsValue {
           }
         }),
       )
-      console.log(nsWithAvailability)
       setAvailableNs(nsWithAvailability)
       setLoading(false)
     },
