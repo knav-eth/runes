@@ -1,4 +1,4 @@
-import { Box } from "@chakra-ui/react"
+import { Box, Tooltip } from "@chakra-ui/react"
 import React from "react"
 import { SubgraphN } from "../clients/n"
 import { NWithAvailability } from "../hooks/useAvailableWalletNs"
@@ -29,22 +29,27 @@ const NGrid: React.FC<NGridProps> = ({ ns, onClick }) => {
           <MotionGridItem
             key={numericId}
             display="flex"
-            cursor="pointer"
+            cursor={available ? "pointer" : "not-allowed"}
             variants={GRID_ANIMATION_VARIANTS}
-            whileHover={{ scale: 1.05 }}
+            whileHover={available ? { scale: 1.05 } : undefined}
             onTap={() => {
-              onClick?.(n)
+              if (available) {
+                onClick?.(n)
+              }
             }}
           >
-            <Box
-              backgroundColor={available ? "gray.800" : "red.800"}
-              borderWidth="4px"
-              borderColor="transparent"
-              borderStyle="solid"
-              width="full"
-            >
-              <NCard n={n} />
-            </Box>
+            <Tooltip label={available ? undefined : "This N has already been used"}>
+              <Box
+                opacity={0.5}
+                backgroundColor="gray.800"
+                borderWidth="4px"
+                borderColor="transparent"
+                borderStyle="solid"
+                width="full"
+              >
+                <NCard n={n} />
+              </Box>
+            </Tooltip>
           </MotionGridItem>
         )
       })}
