@@ -26,6 +26,7 @@ interface RuneInterface extends ethers.utils.Interface {
     "approve(address,uint256)": FunctionFragment;
     "balanceOf(address)": FunctionFragment;
     "getApproved(uint256)": FunctionFragment;
+    "getTierInformation(uint256)": FunctionFragment;
     "isApprovedForAll(address,address)": FunctionFragment;
     "mint(uint256)": FunctionFragment;
     "mintWithN(uint256)": FunctionFragment;
@@ -59,6 +60,10 @@ interface RuneInterface extends ethers.utils.Interface {
   encodeFunctionData(functionFragment: "balanceOf", values: [string]): string;
   encodeFunctionData(
     functionFragment: "getApproved",
+    values: [BigNumberish]
+  ): string;
+  encodeFunctionData(
+    functionFragment: "getTierInformation",
     values: [BigNumberish]
   ): string;
   encodeFunctionData(
@@ -135,6 +140,10 @@ interface RuneInterface extends ethers.utils.Interface {
   decodeFunctionResult(functionFragment: "balanceOf", data: BytesLike): Result;
   decodeFunctionResult(
     functionFragment: "getApproved",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
+    functionFragment: "getTierInformation",
     data: BytesLike
   ): Result;
   decodeFunctionResult(
@@ -263,6 +272,11 @@ export class Rune extends BaseContract {
       overrides?: CallOverrides
     ): Promise<[string]>;
 
+    getTierInformation(
+      tokenId: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<[string, string]>;
+
     isApprovedForAll(
       owner: string,
       operator: string,
@@ -375,6 +389,11 @@ export class Rune extends BaseContract {
     overrides?: CallOverrides
   ): Promise<string>;
 
+  getTierInformation(
+    tokenId: BigNumberish,
+    overrides?: CallOverrides
+  ): Promise<[string, string]>;
+
   isApprovedForAll(
     owner: string,
     operator: string,
@@ -477,6 +496,11 @@ export class Rune extends BaseContract {
       tokenId: BigNumberish,
       overrides?: CallOverrides
     ): Promise<string>;
+
+    getTierInformation(
+      tokenId: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<[string, string]>;
 
     isApprovedForAll(
       owner: string,
@@ -611,6 +635,11 @@ export class Rune extends BaseContract {
       overrides?: CallOverrides
     ): Promise<BigNumber>;
 
+    getTierInformation(
+      tokenId: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<BigNumber>;
+
     isApprovedForAll(
       owner: string,
       operator: string,
@@ -723,6 +752,11 @@ export class Rune extends BaseContract {
     ): Promise<PopulatedTransaction>;
 
     getApproved(
+      tokenId: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<PopulatedTransaction>;
+
+    getTierInformation(
       tokenId: BigNumberish,
       overrides?: CallOverrides
     ): Promise<PopulatedTransaction>;

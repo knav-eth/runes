@@ -1,5 +1,4 @@
 import { Alert, AlertIcon, Box, Button, Heading, Link, Text } from "@chakra-ui/react"
-import { BigNumber } from "@ethersproject/bignumber/src.ts/bignumber"
 import React, { useCallback, useMemo, useState } from "react"
 import { SubgraphN } from "../../clients/n"
 import { useMainContract } from "../../hooks/useMainContract"
@@ -35,12 +34,8 @@ export const MintStep: React.FC<MintStepProps> = ({ selectedN, onCancel, onSucce
       const result = await contractWithSigner.mintWithN(numericId)
 
       setMintingTxn(result.hash)
-      const receipt = await result.wait()
-
-      const mintedBigNo: BigNumber = receipt.events?.[0]?.args?.[2]
-      const mintedId = parseInt(mintedBigNo._hex, 16)
+      await result.wait()
       onSuccess()
-      console.log(`Minted Token ID: ${mintedId}`)
     } catch (e) {
       // @ts-ignore
       window.MM_ERR = e
@@ -50,7 +45,7 @@ export const MintStep: React.FC<MintStepProps> = ({ selectedN, onCancel, onSucce
     } finally {
       setIsMinting(false)
     }
-  }, [provider, mainContract, numericId])
+  }, [provider, mainContract, numericId, onSuccess])
 
   const transactionUrl: string | undefined = useMemo(() => {
     if (!mintingTxn || !isMinting) {

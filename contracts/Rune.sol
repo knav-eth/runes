@@ -35,27 +35,68 @@ contract Rune is NPass {
         "176.1 83.4 "
     ];
 
-    string constant RUNE_BASE_START = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500" width="500px"><style>@keyframes offset { to { stroke-dashoffset: 0; } } #circle { stroke-width: 2 } .line { stroke-dasharray: 2583; stroke-dashoffset: 2583; animation-delay: 2s; animation: offset 8s ease-in-out forwards; }</style><g id="background"><rect width="500" height="500" fill="#000000"/></g><g id="circle"><circle cx="250.1" cy="252" r="184.1" fill="none" stroke="#fff" stroke-miterlimit="10"/></g><g id="dots"><circle cx="250.1" cy="67.9" r="4.7" fill="#fff"/><circle cx="325" cy="83.8" r="4.7" fill="#fff"/><circle cx="386.9" cy="128.9" r="4.7" fill="#fff"/><circle cx="425.2" cy="195.3" r="4.7" fill="#fff"/><circle cx="433.1" cy="271.5" r="4.7" fill="#fff"/><circle cx="409.3" cy="344.3" r="4.7" fill="#fff"/><circle cx="357.9" cy="401.1" r="4.7" fill="#fff"/><circle cx="287.8" cy="432.1" r="4.7" fill="#fff"/><circle cx="211.2" cy="431.9" r="4.7" fill="#fff"/><circle cx="141.4" cy="400.5" r="4.7" fill="#fff"/><circle cx="90.3" cy="343.4" r="4.7" fill="#fff"/><circle cx="66.9" cy="270.4" r="4.7" fill="#fff"/><circle cx="75.3" cy="194.3" r="4.7" fill="#fff"/><circle cx="113.9" cy="128.1" r="4.7" fill="#fff"/><circle cx="176.1" cy="83.4" r="4.7" fill="#fff"/></g><g id="path"><polyline class="line" points="';
-    string constant RUNE_BASE_END = '" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/></g></svg>';
+    string constant RUNE_BASE_ONE = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500" width="500px"><style>@keyframes offset { 50% { stroke-dashoffset: 0; } 100% { stroke-dashoffset: 2583; } } .line { stroke-dasharray: 2583; stroke-dashoffset: 2583; animation-delay: 1s; animation: offset 10s ease-in-out infinite; stroke-width: 2; } circle, polyline { stroke: ';
+    string constant RUNE_BASE_TWO = '; } #dots circle { fill: ';
+    string constant RUNE_BASE_THREE = '; }</style><g id="background"><rect width="500" height="500" fill="#000000"/></g><g id="circle"><circle cx="250.1" cy="252" r="184.1" fill="none" stroke="#fff" stroke-width="2" stroke-miterlimit="10"/></g><g id="dots"><circle cx="250.1" cy="67.9" r="4.7" fill="#fff"/><circle cx="325" cy="83.8" r="4.7" fill="#fff"/><circle cx="386.9" cy="128.9" r="4.7" fill="#fff"/><circle cx="425.2" cy="195.3" r="4.7" fill="#fff"/><circle cx="433.1" cy="271.5" r="4.7" fill="#fff"/><circle cx="409.3" cy="344.3" r="4.7" fill="#fff"/><circle cx="357.9" cy="401.1" r="4.7" fill="#fff"/><circle cx="287.8" cy="432.1" r="4.7" fill="#fff"/><circle cx="211.2" cy="431.9" r="4.7" fill="#fff"/><circle cx="141.4" cy="400.5" r="4.7" fill="#fff"/><circle cx="90.3" cy="343.4" r="4.7" fill="#fff"/><circle cx="66.9" cy="270.4" r="4.7" fill="#fff"/><circle cx="75.3" cy="194.3" r="4.7" fill="#fff"/><circle cx="113.9" cy="128.1" r="4.7" fill="#fff"/><circle cx="176.1" cy="83.4" r="4.7" fill="#fff"/></g><g id="path"><polyline class="line" points="';
+    string constant RUNE_BASE_FOUR = '" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" /></g></svg>';
+
+    function getTierInformation(uint256 tokenId) public view virtual returns (string memory, string memory) {
+        string memory name;
+        string memory color;
+
+        uint256 total = n.getFirst(tokenId) + n.getSecond(tokenId);
+        total = total + n.getThird(tokenId);
+        total = total + n.getFourth(tokenId);
+        total = total + n.getFifth(tokenId);
+        total = total + n.getSixth(tokenId);
+        total = total + n.getSeventh(tokenId);
+        total = total + n.getEight(tokenId);
+
+        if (total >= 40 && total <= 50) {
+            name = "Purity";
+            color = "#FFFFFF";
+        } else if (total >= 35 && total <= 55) {
+            name = "Balance";
+            color = "#03AE00";
+        } else if (total >= 29 && total <= 61) {
+            name = "Spirit";
+            color = "#A800E3";
+        } else if (total >= 24 && total <= 66) {
+            name = "Fortune";
+            color = "#BE7E00";
+        } else {
+            name = "Power";
+            color = "#AE0000";
+        }
+
+        return (name, color);
+    }
 
     function tokenSVG(uint256 tokenId) public view virtual returns (string memory) {
         require(_exists(tokenId), "ERC721Metadata: URI query for nonexistent token");
-        string[10] memory parts;
-        parts[0] = RUNE_BASE_START;
-        parts[1] = COORDINATE_MAPPING[n.getFirst(tokenId)];
-        parts[2] = COORDINATE_MAPPING[n.getSecond(tokenId)];
-        parts[3] = COORDINATE_MAPPING[n.getThird(tokenId)];
-        parts[4] = COORDINATE_MAPPING[n.getFourth(tokenId)];
-        parts[5] = COORDINATE_MAPPING[n.getFifth(tokenId)];
-        parts[6] = COORDINATE_MAPPING[n.getSixth(tokenId)];
-        parts[7] = COORDINATE_MAPPING[n.getSeventh(tokenId)];
-        parts[8] = COORDINATE_MAPPING[n.getEight(tokenId)];
-        parts[9] = RUNE_BASE_END;
+
+        (, string memory color) = getTierInformation(tokenId);
+
+        string[14] memory parts;
+        parts[0] = RUNE_BASE_ONE;
+        parts[1] = color;
+        parts[2] = RUNE_BASE_TWO;
+        parts[3] = color;
+        parts[4] = RUNE_BASE_THREE;
+        parts[5] = COORDINATE_MAPPING[n.getFirst(tokenId)];
+        parts[6] = COORDINATE_MAPPING[n.getSecond(tokenId)];
+        parts[7] = COORDINATE_MAPPING[n.getThird(tokenId)];
+        parts[8] = COORDINATE_MAPPING[n.getFourth(tokenId)];
+        parts[9] = COORDINATE_MAPPING[n.getFifth(tokenId)];
+        parts[10] = COORDINATE_MAPPING[n.getSixth(tokenId)];
+        parts[11] = COORDINATE_MAPPING[n.getSeventh(tokenId)];
+        parts[12] = COORDINATE_MAPPING[n.getEight(tokenId)];
+        parts[13] = RUNE_BASE_FOUR;
 
         string memory output = string(
             abi.encodePacked(parts[0], parts[1], parts[2], parts[3], parts[4], parts[5], parts[6], parts[7], parts[8])
         );
-        output = string(abi.encodePacked(output, parts[9]));
+        output = string(abi.encodePacked(output, parts[9], parts[10], parts[11], parts[12], parts[13]));
         return output;
     }
 
@@ -63,6 +104,7 @@ contract Rune is NPass {
         require(_exists(tokenId), "ERC721Metadata: URI query for nonexistent token");
 
         string memory output = tokenSVG(tokenId);
+        (string memory name,) = getTierInformation(tokenId);
 
         string memory json = Base64.encode(
             bytes(
@@ -72,7 +114,9 @@ contract Rune is NPass {
                         toString(tokenId),
                         '", "description": "Runes are generated and stored on chain using N tokens.", "image": "data:image/svg+xml;base64,',
                         Base64.encode(bytes(output)),
-                        '"}'
+                        '", attributes: [{"trait_type": "Essence": "',
+                        Base64.encode(bytes(name)),
+                        '"}]}'
                     )
                 )
             )

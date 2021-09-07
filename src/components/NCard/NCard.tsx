@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import { AspectRatio, Flex } from "@chakra-ui/react"
 import React, { useMemo } from "react"
 import { parseAndExtractImageFromURI } from "../../utils/metadata"
