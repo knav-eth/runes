@@ -40,7 +40,7 @@ const NGrid: React.FC<NGridProps> = ({ ns, onClick }) => {
           >
             <Tooltip label={available ? undefined : "This N has already been used"}>
               <Box
-                opacity={0.5}
+                opacity={available ? undefined : 0.5}
                 backgroundColor="gray.800"
                 borderWidth="4px"
                 borderColor="transparent"

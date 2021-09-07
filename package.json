@@ -34,7 +34,7 @@
     "graphql": "^15.5.2",
     "graphql-request": "^3.5.0",
     "isomorphic-fetch": "^3.0.0",
-    "next": "11.0.1",
+    "next": "11.1.1",
     "puppeteer-core": "^10.2.0",
     "raf": "^3.4.1",
     "react": "17.0.2",
