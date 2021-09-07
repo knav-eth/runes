@@ -13,7 +13,7 @@ task("deploy", "Deploy main contract", async (taskArgs, hre) => {
     throw new Error("N Contract Address not found")
   }
 
-  const contract = await contractFactory.deploy(nContractAddress)
+  const contract = await contractFactory.deploy(nContractAddress, { gasPrice: hre.ethers.utils.parseUnits('100', "gwei") })
   const deployed = await contract.deployed()
 
   persistMainContractAddress(hre, deployed.address)
