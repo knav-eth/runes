@@ -1,1 +1,1 @@
-export const INFURA_ID = "fbefcba705fa44728a3699a76b85c8fa"
+export const INFURA_ID = process.env.NEXT_PUBLIC_INFURA_PROJECT_ID
