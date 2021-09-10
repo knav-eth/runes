@@ -2,6 +2,7 @@ import "@nomiclabs/hardhat-ethers"
 import { task } from "hardhat/config"
 import { Rune__factory } from "../../shared/contract_types"
 import { getNContractAddress, persistMainContractAddress } from "../utils/contract"
+import { promptForGasPrice } from "../utils/gas"
 
 task("deploy", "Deploy main contract", async (taskArgs, hre) => {
   await hre.run("compile")
@@ -13,9 +14,11 @@ task("deploy", "Deploy main contract", async (taskArgs, hre) => {
     throw new Error("N Contract Address not found")
   }
 
-  const contract = await contractFactory.deploy(nContractAddress, {
-    gasPrice: hre.ethers.utils.parseUnits("100", "gwei"),
-  })
+  const gasPrice = await promptForGasPrice(hre, contractFactory.signer)
+  const deploymentCost = await contractFactory.signer.estimateGas(contractFactory.getDeployTransaction(nContractAddress, { gasPrice }))
+  console.log('Estimated cost to deploy contract:', hre.ethers.utils.formatUnits(deploymentCost.mul(gasPrice), 'ether'), 'ETH');
+
+  const contract = await contractFactory.deploy(nContractAddress, { gasPrice })
   const deployed = await contract.deployed()
 
   persistMainContractAddress(hre, deployed.address)
