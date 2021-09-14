@@ -2,6 +2,7 @@ import "@nomiclabs/hardhat-ethers"
 import "@nomiclabs/hardhat-etherscan"
 import "@nomiclabs/hardhat-waffle"
 import "@typechain/hardhat"
+import { removeConsoleLog } from "hardhat-preprocessor"
 
 import { HardhatUserConfig } from "hardhat/config"
 import { loadTasks } from "./hardhat/utils/tasks"
@@ -74,7 +75,9 @@ const config: HardhatUserConfig = {
     outDir: "./shared/contract_types",
     externalArtifacts: ["./externalArtifacts/*.json"],
   },
-
+  preprocess: {
+    eachLine: removeConsoleLog((hre) => hre.network.name !== "hardhat"),
+  },
   etherscan: {
     apiKey: process.env.ETHERSCAN_API_KEY,
   },
