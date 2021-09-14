@@ -41,6 +41,3 @@ You can run target any network by appending `--network <network_name>` to any of
 
 For example, to deploy to mainnet you would run:
 `yarn deploy --network mainnet`
-
-And to populate an existing Blitnaut contract on Rinkeby you would run:
-`yarn deploy --network rinkeby`
