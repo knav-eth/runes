@@ -1,6 +1,7 @@
 import { Link, Stack, StackItem } from "@chakra-ui/react"
 import Image from "next/image"
 import React, { useMemo } from "react"
+import { DISCORD_INVITE_LINK, TWITTER_HANDLE } from "../../shared/config/base"
 import { getNetworkConfig } from "../utils/network"
 
 type LogoItemProps = {
@@ -16,7 +17,7 @@ const LogoItem: React.FC<LogoItemProps> = ({ image, href }) => {
       rel="noopener noreferrer"
       _focus={{ outline: "none" }}
     >
-      <StackItem opacity={0.6} _hover={{ opacity: 0.8 }} >
+      <StackItem opacity={0.6} _hover={{ opacity: 0.8 }}>
         <Image src={image} width={32} height={32} />
       </StackItem>
     </Link>
@@ -44,14 +45,14 @@ export const ExternalLogos = () => {
 
   return (
     <Stack direction="row" spacing={4}>
-      <LogoItem href="https://discord.com/invite/pnx9Rjte2R" image="/discord_logo.png" />
+      <LogoItem href={DISCORD_INVITE_LINK} image="/discord_logo.svg" />
       {etherscanLink && (
-        <LogoItem href={etherscanLink} image="/etherscan_logo.png" />
+        <LogoItem href={etherscanLink} image="/etherscan_logo.svg" />
       )}
       {openseaUrl && (
         <LogoItem href={openseaUrl} image="/opensea_logo.png" />
       )}
-      <LogoItem href="https://twitter.com/getrunes" image="/twitter_logo.png" />
+      <LogoItem href={`https://twitter.com/${TWITTER_HANDLE}`} image="/twitter_logo.svg" />
     </Stack>
   )
 }
