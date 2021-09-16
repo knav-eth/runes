@@ -15,6 +15,8 @@ type DebounceRef = {
   resolve?: AnyFunction
 }
 
+// Adapted from https://github.com/tannerlinsley/react-table/blob/master/src/publicUtils.js#L163
+
 export function useAsyncDebounce<F extends AnyFunction>(defaultFn: F, defaultWait = 0) {
   const debounceRef = useRef<DebounceRef>({})
 
