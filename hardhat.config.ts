@@ -6,6 +6,7 @@ import { removeConsoleLog } from "hardhat-preprocessor"
 
 import { HardhatUserConfig } from "hardhat/config"
 import { loadTasks } from "./hardhat/utils/tasks"
+import { ALCHEMY_ID, INFURA_ID } from "./shared/config/base"
 
 loadTasks()
 
@@ -38,7 +39,7 @@ const config: HardhatUserConfig = {
     hardhat: {
       chainId: 1337,
       forking: {
-        url: "https://eth-mainnet.alchemyapi.io/v2/kB_75p2X_gf-qCxt5QjbRtx6HcobSEME",
+        url: `https://eth-rinkeby.alchemyapi.io/v2/${ALCHEMY_ID}`,
         blockNumber: 12876530,
       },
       accounts: {
@@ -48,7 +49,7 @@ const config: HardhatUserConfig = {
     localhost: {
       url: "http://0.0.0.0:8545",
       forking: {
-        url: "https://eth-mainnet.alchemyapi.io/v2/kB_75p2X_gf-qCxt5QjbRtx6HcobSEME",
+        url: `https://eth-rinkeby.alchemyapi.io/v2/${ALCHEMY_ID}`,
       },
       accounts: {
         mnemonic: MNEMONIC,
@@ -56,14 +57,14 @@ const config: HardhatUserConfig = {
       timeout: 100000,
     },
     rinkeby: {
-      url: `https://rinkeby.infura.io/v3/${process.env.INFURA_PROJECT_ID}`,
+      url: `https://rinkeby.infura.io/v3/${INFURA_ID}`,
       accounts: {
         mnemonic: MNEMONIC,
       },
       timeout: 100000,
     },
     mainnet: {
-      url: `https://mainnet.infura.io/v3/${process.env.INFURA_PROJECT_ID}`,
+      url: `https://mainnet.infura.io/v3/${INFURA_ID}`,
       accounts: {
         mnemonic: MNEMONIC,
       },
